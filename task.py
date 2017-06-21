@@ -1,31 +1,20 @@
+import json
+from pprint import pprint
 
-
-# С помощью какой библиотеки в Python 3 можно работать с JSON файлами?
-
-# Импортируйте необходимые библиотеки
-
-# import 
-
-# pprint позволяет в понятном для человека виде форматировать 'сложные' структуры данных 
-import pprint
-
-filename = ''
+filename = 'data.json'
 
 try:
+    data_file = open(filename)
+    data = json.loads(data_file.read())
 
-    with open(filename, encoding='utf-8') as data_file:
-        
-        data = #использовать модуль json и метод для считывания данных: (data_file)
-
-except ________:
+except FileNotFoundError:
 
     print("Файл не найден! Файл должен называться: {}".format(filename))
-    
     status = 'Файл не найден'
 
-
-pprint(data)
-
-# Вывести в форматированном виде поля: 
-
-# company, email, phone, address
+for obj in data:
+    pprint('Компания: ' + obj["company"])
+    pprint('Эл.почта: ' + obj["email"])
+    pprint('Телефон: ' + obj["phone"])
+    pprint('Адрес: ' + obj["address"])
+    pprint('-------------------------')
